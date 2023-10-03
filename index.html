@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Nanum+Myeongjo:wght@700&family=Noto+Sans+KR&display=swap" rel="stylesheet">
+	<title>우리가 빛의 속도로 갈 수 없다면</title>
+
+	<style>
+		body {
+			background-image: url('background.jpg');
+			background-size: cover; 
+			overflow: hidden; 
+			margin: 0; 
+		}
+		.star {
+			position: absolute;
+			left: 0;
+			top: 0;
+		}
+		#poetText{z-index: 9;position: absolute; left: 300px; top: 100px; font-size: 1.8em; font-family: 'Nanum Myeongjo', serif;font-weight: 700;color:#737373; line-height:1.5 }
+		.word{opacity: 0; animation: zoomIn 1s forwards;}
+		@keyframes zoomIn {
+			to{opacity: 1;}
+		}
+	</style>
+</head>
+<body>
+	<div id="poetText"></div> 
+	<audio controls autoplay>
+		<source src="universe.mp3" type="audio/mpeg"> 
+	</audio>
+	<script type="text/javascript">
+
+		var a = ["1.png","2.png","3.png"];
+
+		for(var i = 0; i < 30; i++){
+			var t = document.createElement("img");
+			t.src = a[randomBH(0, 2)];
+			t.className = "star";
+			t.style.width = randomBH(60, 80) + "px";
+			t.style.height = "auto";
+			t.style.left = Math.random() * screen.availWidth + "px";
+			t.style.top = Math.random() * screen.availHeight + "px";
+			document.body.appendChild(t);
+		}
+	
+
+		var poet = "“예전에는 헤어진다는 것이 이런 의미가 아니었어.<br> 적어도 그때는 같은 하늘 아래 있었지.<br> 같은 행성 위에서, 같은 대기를 공유했단 말일세.<br><br> 하지만 지금은 심지어 같은 우주조차 아니야.<br> 내 사연을 아는 사람들은 내게 수십 년 동안 찾아와 위로의 말을 건넸다네.<br>  그래도 당신들은 같은 우주 안에 있는 것이라고.<br> 그 사실을 위안 삼으라고.<br> <br> 하지만 우리가 빛의 속도로 갈 수조차 없다면,<br>  같은 우주라는 개념이 대체 무슨 의미가 있나?<br> <br> 우리가 아무리 우주를 개척하고 인류의 외연을 확장하더라도,<br> 그곳에 매번, 그렇게 남겨지는 사람들이 생겨난다면…….<br> :<br> 우리는 점점 더 우주에 존재하는 외로움의 총합을 늘려갈 뿐인 게 아닌가.”<br> <br> [우리가 빛의 속도로 갈 수 없다면-김초엽 단편소설]";
+		var poetArr = poet.split(" ");
+
+		var myTimer = setInterval(print,500);
+		var s=0;
+
+		function print(){
+			var t= document.createElement("span");
+			t.innerHTML = poetArr[s] + " "
+			t.className = "word"
+			s++;
+			poetText.appendChild(t);
+			if(s == poetArr.length){
+				clearInterval(myTimer);
+			}
+		}
+
+		
+		function randomBH(min, max) {
+			min = Math.ceil(min);
+			max = Math.floor(max);
+			return Math.floor(Math.random() * (max - min + 1)) + min;
+		}
+	</script>
+
+</body>
+</html>
